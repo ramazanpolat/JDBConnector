@@ -140,11 +140,17 @@ public class JDBConnector {
 	
 	
 	public boolean isSystemSchema(String schemaName){
-		return getSystemSchemas().contains(schemaName.toUpperCase());
+		if (getSystemSchemas() == null)
+			return false;
+		else
+			return getSystemSchemas().contains(schemaName.toUpperCase());
 	}
 	
 	public boolean isSystemTable(String tableName){
-		return getSystemTables().contains(tableName.toUpperCase());
+		if (getSystemTables() == null)
+			return false;
+		else
+			return getSystemTables().contains(tableName.toUpperCase());
 	}
 	
 	public JDBConnector(DBType dbType, String server, String port, String database, String username, String password) {
