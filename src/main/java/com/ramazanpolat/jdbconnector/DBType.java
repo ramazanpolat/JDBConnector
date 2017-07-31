@@ -8,5 +8,6 @@ public enum DBType {
 	MSSQL,
 	MySQL,
 	Sybase,
-	PostgreSQL
+	PostgreSQL,
+	ClickHouse
 }

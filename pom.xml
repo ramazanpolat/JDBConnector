@@ -25,5 +25,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>ru.yandex.clickhouse</groupId>
+			<artifactId>clickhouse-jdbc</artifactId>
+			<version>0.1.25</version>
+		</dependency>
+
 	</dependencies>
 </project>
