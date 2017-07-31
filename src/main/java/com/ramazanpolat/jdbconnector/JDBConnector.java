@@ -95,7 +95,10 @@ public class JDBConnector {
 			
 			break;
 		case PostgreSQL:
-			
+			break;
+
+		case ClickHouse:
+			driver = "ru.yandex.clickhouse.ClickHouseDriver";
 			break;
 		default:
 			break;
@@ -219,7 +222,7 @@ public class JDBConnector {
 	}
 	
 	public List<String> systemTablesLookup(DBType dbType){
-		List<String> tables = null;
+		List<String> tables;
 		String[] DB2 = {
 				"SYSPUBLIC", 
 				"SYSIBM",
@@ -296,21 +299,43 @@ public class JDBConnector {
 				"SYSIBMINTERNAL",
 				"SYSIBMTS",
 				"SYSPROC"};
-		
+
 		String[] MySQL = {
-				"SYSPUBLIC", 
+				"SYSPUBLIC",
 				"SYSIBM",
 				"SYSTOOLS",
 				"SYSCAT",
 				"SYSIBM",
 				"SYSIBMADM",
-				"SYSSTAT", 
+				"SYSSTAT",
 				"NULLID",
 				"SQLJ",
 				"SYSFUN",
 				"SYSIBMINTERNAL",
 				"SYSIBMTS",
 				"SYSPROC"};
+		
+		String[] ClickHouse = {
+				"ASYNCHRONOUS_METRICS",
+				"BUILD_OPTIONS",
+				"CLUSTERS",
+				"COLUMNS",
+				"DATABASES",
+				"DICTIONARIES",
+				"EVENTS",
+				"FUNCTIONS",
+				"GRAPHITE_RETENTIONS",
+				"MERGES",
+				"METRICS",
+				"NUMBERS",
+				"NUMBERS_MT",
+				"ONE",
+				"PARTS",
+				"PROCESSES",
+				"REPLICAS",
+				"REPLICATION_QUEUE",
+				"SETTINGS",
+				"TABLES"};
 		
 		String[] PostgreSQL = {
 				"SYSPUBLIC", 
@@ -342,11 +367,14 @@ public class JDBConnector {
 		case MSSQL:
 			tables = Arrays.asList(MSSQL);
 			break;
+		case ClickHouse:
+			tables = Arrays.asList(MSSQL);
+			break;
 		case PostgreSQL:
 			tables = Arrays.asList(PostgreSQL);
 			break;
-
 		default:
+			tables = null;
 			break;
 		}
 		
@@ -416,20 +444,9 @@ public class JDBConnector {
 				"SYSIBMTS",
 				"SYSPROC"};
 		
-		String[] MySQL = {
-				"SYSPUBLIC", 
-				"SYSIBM",
-				"SYSTOOLS",
-				"SYSCAT",
-				"SYSIBM",
-				"SYSIBMADM",
-				"SYSSTAT", 
-				"NULLID",
-				"SQLJ",
-				"SYSFUN",
-				"SYSIBMINTERNAL",
-				"SYSIBMTS",
-				"SYSPROC"};
+		String[] ClickHouse = {
+				"SYSTEM"
+				};
 		
 		String[] PostgreSQL = {
 				"SYSPUBLIC", 
@@ -455,8 +472,8 @@ public class JDBConnector {
 		case Sybase:
 			schemas = Arrays.asList(Sybase);
 			break;
-		case MySQL:
-			schemas = Arrays.asList(MySQL);
+		case ClickHouse:
+			schemas = Arrays.asList(ClickHouse);
 			break;
 		case MSSQL:
 			schemas = Arrays.asList(MSSQL);
